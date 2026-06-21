@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 🔥 OUTPUT KHUSUS UNTUK BLACKBOX TEST (CI/CD)
     // Jika request dari CI, langsung return hasil tanpa HTML
-    if (isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'GitHub') !== false) {
-        echo $debug_status;
-        exit;
+    if (isset($_GET['test']) && $_GET['test'] == '1') {
+      echo $debug_status;
+      exit;
     }
 }
 ?>
