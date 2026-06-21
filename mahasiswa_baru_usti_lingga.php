@@ -102,7 +102,7 @@ button:hover { background:var(--navy-lt); }
 
     <h3>Entri Data</h3>
 
-    <?php if ($pesan): ?>
+    <?php if ($pesan) : ?>
       <div class="notif <?= $status ?>">
         <b><?= $status === 'sukses' ? 'BERHASIL' : 'GAGAL' ?></b><br>
         <?= htmlspecialchars($pesan) ?><br>

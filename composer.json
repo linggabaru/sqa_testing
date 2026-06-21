@@ -13,8 +13,8 @@
         "php": ">=8.1"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.9",
-        "phpstan/phpstan": "^1.11"
+        "phpstan/phpstan": "^1.11",
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "scripts": {
         "lint": "phpcs --standard=phpcs.xml mahasiswa_baru_usti_lingga.php",
