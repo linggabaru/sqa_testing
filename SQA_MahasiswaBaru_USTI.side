@@ -1,0 +1,273 @@
+{
+  "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+  "version": "2.0",
+  "name": "SQA Mahasiswa Baru USTI",
+  "url": "http://localhost/sqa/mahasiswa_baru_usti_lingga.php",
+  "tests": [
+    {
+      "id": "tc01-karakter",
+      "name": "TC01 - Entri Data Karakter (Enter)",
+      "commands": [
+        {
+          "id": "tc01-cmd1",
+          "comment": "Buka halaman aplikasi Mahasiswa Baru USTI",
+          "command": "open",
+          "target": "/sqa/mahasiswa_baru_usti_lingga.php",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc01-cmd2",
+          "comment": "Pastikan field nama dalam keadaan kosong sebelum input",
+          "command": "assertValue",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"],
+            ["css=#nama", "css:finder"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "tc01-cmd3",
+          "comment": "Input data karakter (huruf saja)",
+          "command": "type",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"],
+            ["css=#nama", "css:finder"]
+          ],
+          "value": "Lingga"
+        },
+        {
+          "id": "tc01-cmd4",
+          "comment": "Tekan tombol Enter untuk submit form",
+          "command": "sendKeys",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"]
+          ],
+          "value": "${KEY_ENTER}"
+        },
+        {
+          "id": "tc01-cmd5",
+          "comment": "Verifikasi notifikasi sukses muncul",
+          "command": "assertElementPresent",
+          "target": "css=.notif.sukses",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc01-cmd6",
+          "comment": "Verifikasi pesan menyebutkan tipe Karakter",
+          "command": "assertText",
+          "target": "css=.notif-detail",
+          "targets": [],
+          "value": "*Karakter*"
+        },
+        {
+          "id": "tc01-cmd7",
+          "comment": "Verifikasi judul notifikasi 'Entri Berhasil'",
+          "command": "assertText",
+          "target": "css=.notif-title",
+          "targets": [],
+          "value": "Entri Berhasil"
+        }
+      ]
+    },
+    {
+      "id": "tc02-number",
+      "name": "TC02 - Entri Data Number (Enter)",
+      "commands": [
+        {
+          "id": "tc02-cmd1",
+          "comment": "Buka halaman aplikasi Mahasiswa Baru USTI",
+          "command": "open",
+          "target": "/sqa/mahasiswa_baru_usti_lingga.php",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc02-cmd2",
+          "comment": "Input data angka saja",
+          "command": "type",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"]
+          ],
+          "value": "12345"
+        },
+        {
+          "id": "tc02-cmd3",
+          "comment": "Tekan tombol Enter untuk submit form",
+          "command": "sendKeys",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"]
+          ],
+          "value": "${KEY_ENTER}"
+        },
+        {
+          "id": "tc02-cmd4",
+          "comment": "Verifikasi notifikasi sukses muncul",
+          "command": "assertElementPresent",
+          "target": "css=.notif.sukses",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc02-cmd5",
+          "comment": "Verifikasi pesan menyebutkan tipe Number",
+          "command": "assertText",
+          "target": "css=.notif-detail",
+          "targets": [],
+          "value": "*Number*"
+        }
+      ]
+    },
+    {
+      "id": "tc03-campuran",
+      "name": "TC03 - Entri Data Karakter+Number (Klik SAVE)",
+      "commands": [
+        {
+          "id": "tc03-cmd1",
+          "comment": "Buka halaman aplikasi Mahasiswa Baru USTI",
+          "command": "open",
+          "target": "/sqa/mahasiswa_baru_usti_lingga.php",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc03-cmd2",
+          "comment": "Input data campuran huruf dan angka",
+          "command": "type",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"]
+          ],
+          "value": "Lingga123"
+        },
+        {
+          "id": "tc03-cmd3",
+          "comment": "Klik tombol SAVE",
+          "command": "click",
+          "target": "css=button[type='submit']",
+          "targets": [
+            ["css=button[type='submit']", "css:finder"],
+            ["xpath=//button[@type='submit']", "xpath:attributes"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "tc03-cmd4",
+          "comment": "Verifikasi notifikasi sukses muncul",
+          "command": "assertElementPresent",
+          "target": "css=.notif.sukses",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc03-cmd5",
+          "comment": "Verifikasi pesan menyebutkan tipe Karakter + Number",
+          "command": "assertText",
+          "target": "css=.notif-detail",
+          "targets": [],
+          "value": "*Karakter + Number*"
+        }
+      ]
+    },
+    {
+      "id": "tc04-kosong",
+      "name": "TC04 - Tanpa Entri Data / Kosong (Klik SAVE)",
+      "commands": [
+        {
+          "id": "tc04-cmd1",
+          "comment": "Buka halaman aplikasi Mahasiswa Baru USTI",
+          "command": "open",
+          "target": "/sqa/mahasiswa_baru_usti_lingga.php",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc04-cmd2",
+          "comment": "Pastikan field nama kosong (tidak diisi apapun)",
+          "command": "assertValue",
+          "target": "id=nama",
+          "targets": [
+            ["id=nama", "id"],
+            ["name=nama", "name"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "tc04-cmd3",
+          "comment": "Klik tombol SAVE tanpa mengisi data",
+          "command": "click",
+          "target": "css=button[type='submit']",
+          "targets": [
+            ["css=button[type='submit']", "css:finder"],
+            ["xpath=//button[@type='submit']", "xpath:attributes"]
+          ],
+          "value": ""
+        },
+        {
+          "id": "tc04-cmd4",
+          "comment": "Verifikasi notifikasi gagal muncul",
+          "command": "assertElementPresent",
+          "target": "css=.notif.gagal",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "tc04-cmd5",
+          "comment": "Verifikasi pesan kesalahan validasi nama kosong",
+          "command": "assertText",
+          "target": "css=.notif-detail",
+          "targets": [],
+          "value": "Field nama tidak boleh kosong."
+        },
+        {
+          "id": "tc04-cmd6",
+          "comment": "Verifikasi judul notifikasi 'Entri Gagal'",
+          "command": "assertText",
+          "target": "css=.notif-title",
+          "targets": [],
+          "value": "Entri Gagal"
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "suite-positif",
+      "name": "Suite - Skenario Positif (Karakter, Number, Campuran)",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": ["tc01-karakter", "tc02-number", "tc03-campuran"]
+    },
+    {
+      "id": "suite-negatif",
+      "name": "Suite - Skenario Negatif (Data Kosong)",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": ["tc04-kosong"]
+    },
+    {
+      "id": "suite-full-regresi",
+      "name": "Suite - Full Regresi (Semua TC)",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 600,
+      "tests": ["tc01-karakter", "tc02-number", "tc03-campuran", "tc04-kosong"]
+    }
+  ],
+  "urls": ["http://localhost/sqa/mahasiswa_baru_usti_lingga.php"],
+  "plugins": []
+}

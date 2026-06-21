@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ruleset name="SQA-MahasiswaBaruUSTI">
+    <description>
+        Aturan PHP CodeSniffer (PSR-12) untuk Aplikasi Mahasiswa Baru USTI.
+        Digunakan sebagai bagian dari pengujian White Box - memeriksa
+        konsistensi gaya penulisan kode (coding standard) tanpa mengubah
+        logika program.
+    </description>
+
+    <!-- File/folder yang diperiksa -->
+    <file>mahasiswa_baru_usti_lingga.php</file>
+    <file>tests</file>
+
+    <!-- Exclude folder yang tidak perlu diperiksa -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>node_modules/*</exclude-pattern>
+
+    <!-- Gunakan standar PSR-12 sebagai basis -->
+    <rule ref="PSR12"/>
+
+    <!-- Tampilkan progress saat scan -->
+    <arg value="p"/>
+    <!-- Gunakan format laporan ringkas dan berwarna di terminal -->
+    <arg name="colors"/>
+    <!-- Tampilkan source code snippet pada setiap pelanggaran -->
+    <arg name="report" value="full"/>
+
+    <!-- Batas panjang baris (disesuaikan agar tidak terlalu ketat untuk file campuran PHP+HTML) -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="150"/>
+            <property name="absoluteLineLimit" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- File ini PHP bercampur HTML (template), maka aturan "file harus diakhiri tag PHP tertutup"
+         dan beberapa aturan ketat murni-PHP dikecualikan agar relevan dengan kondisi nyata aplikasi -->
+    <rule ref="PSR12">
+        <exclude name="PSR2.Files.ClosingTag"/>
+    </rule>
+</ruleset>

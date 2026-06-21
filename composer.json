@@ -1,0 +1,45 @@
+{
+    "name": "usti/mahasiswa-baru-usti",
+    "description": "Project UAS SQA - Aplikasi Mahasiswa Baru USTI (Teknik Informatika, USTI, TA. 2026)",
+    "type": "project",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Lingga Prestiawan",
+            "role": "Developer & Tester"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9",
+        "phpstan/phpstan": "^1.11"
+    },
+    "scripts": {
+        "lint": "phpcs --standard=phpcs.xml mahasiswa_baru_usti_lingga.php",
+        "lint-fix": "phpcbf --standard=phpcs.xml mahasiswa_baru_usti_lingga.php",
+        "static-analysis": "phpstan analyse --configuration=phpstan.neon",
+        "blackbox-test": "php tests/blackbox_test.php",
+        "serve": "php -S 127.0.0.1:8000",
+        "test-all": [
+            "@lint",
+            "@static-analysis",
+            "echo 'White Box selesai. Jalankan server lalu: composer run blackbox-test'"
+        ]
+    },
+    "scripts-descriptions": {
+        "lint": "Jalankan PHP CodeSniffer (PSR-12) - White Box",
+        "lint-fix": "Perbaiki otomatis pelanggaran style PSR-12 yang bisa diperbaiki",
+        "static-analysis": "Jalankan PHPStan level 5 - White Box",
+        "blackbox-test": "Jalankan Black Box CLI test (butuh server aktif di port 8000)",
+        "serve": "Jalankan PHP built-in server di http://127.0.0.1:8000",
+        "test-all": "Jalankan seluruh rangkaian White Box (lint + static analysis)"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

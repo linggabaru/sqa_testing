@@ -1,0 +1,25 @@
+Issue Type,Summary,Description,Priority,Labels,Component,Status,Test Type,Precondition,Steps,Expected Result,Assignee
+Test,"TC01 - Entri Data Karakter via Enter","Pengujian fungsi entri data dengan input karakter (huruf) pada Aplikasi Mahasiswa Baru USTI, submit menggunakan tombol Enter.",High,"blackbox,positif,sqa","Mahasiswa Baru USTI",To Do,Black Box,"Halaman entri data sudah terbuka dan form dalam keadaan kosong","1. Akses halaman entri data
+2. Ketik nama berupa karakter (contoh: Lingga)
+3. Tekan tombol Enter","Notifikasi sukses muncul dengan pesan 'Data ""Lingga"" (Karakter) berhasil disimpan.' dan tipe data terdeteksi sebagai Karakter",Lingga Prestiawan
+Test,"TC02 - Entri Data Number via Enter","Pengujian fungsi entri data dengan input angka pada Aplikasi Mahasiswa Baru USTI, submit menggunakan tombol Enter.",High,"blackbox,positif,sqa","Mahasiswa Baru USTI",To Do,Black Box,"Halaman entri data sudah terbuka dan form dalam keadaan kosong","1. Akses halaman entri data
+2. Ketik nama berupa angka (contoh: 12345)
+3. Tekan tombol Enter","Notifikasi sukses muncul dengan pesan 'Data ""12345"" (Number) berhasil disimpan.' dan tipe data terdeteksi sebagai Number",Lingga Prestiawan
+Test,"TC03 - Entri Data Karakter+Number via SAVE","Pengujian fungsi entri data dengan input campuran huruf dan angka pada Aplikasi Mahasiswa Baru USTI, submit menggunakan tombol SAVE.",High,"blackbox,positif,sqa","Mahasiswa Baru USTI",To Do,Black Box,"Halaman entri data sudah terbuka dan form dalam keadaan kosong","1. Akses halaman entri data
+2. Ketik nama campuran huruf dan angka (contoh: Lingga123)
+3. Klik tombol SAVE","Notifikasi sukses muncul dengan pesan 'Data ""Lingga123"" (Karakter + Number) berhasil disimpan.' dan tipe data terdeteksi sebagai Karakter + Number",Lingga Prestiawan
+Test,"TC04 - Tanpa Entri Data (kosong) via SAVE","Pengujian validasi form ketika field nama dikosongkan lalu disubmit menggunakan tombol SAVE.",High,"blackbox,negatif,sqa","Mahasiswa Baru USTI",To Do,Black Box,"Halaman entri data sudah terbuka dan form dalam keadaan kosong","1. Akses halaman entri data
+2. Tidak mengisi apapun pada field nama
+3. Klik tombol SAVE","Notifikasi gagal muncul dengan pesan 'Field nama tidak boleh kosong.'",Lingga Prestiawan
+Test,"TC05 - White Box: Validasi Trim Spasi pada Nama","Pengujian jalur kode trim() pada variabel nama untuk memastikan spasi di awal/akhir dihapus sebelum diproses.",Medium,"whitebox,unit,sqa","Mahasiswa Baru USTI",To Do,White Box,"Source code mahasiswa_baru_usti_lingga.php dapat diakses","1. Telusuri baris kode: $nama = trim($_POST['nama'] ?? '')
+2. Kirim input '   Lingga   ' (dengan spasi di awal/akhir)
+3. Periksa nilai $nama setelah trim","Nilai $nama menjadi 'Lingga' tanpa spasi di awal/akhir, lolos ke percabangan else (bukan kosong)",Lingga Prestiawan
+Test,"TC06 - White Box: Jalur Percabangan ctype_alpha()","Pengujian jalur logika percabangan ctype_alpha($s) untuk memverifikasi deteksi tipe Karakter berjalan sesuai source code.",Medium,"whitebox,unit,sqa","Mahasiswa Baru USTI",To Do,White Box,"Source code mahasiswa_baru_usti_lingga.php dapat diakses","1. Telusuri baris kode: $tipe = ctype_alpha($s) ? 'Karakter' : (...)
+2. Input nama 'Lingga Prestiawan' (mengandung spasi antar kata)
+3. Periksa hasil str_replace(' ', '', nama) lalu ctype_alpha()","Setelah spasi dihapus, ctype_alpha() bernilai true sehingga $tipe = 'Karakter'",Lingga Prestiawan
+Test,"TC07 - White Box: Jalur Percabangan ctype_digit()","Pengujian jalur logika percabangan ctype_digit($s) untuk memverifikasi deteksi tipe Number berjalan sesuai source code.",Medium,"whitebox,unit,sqa","Mahasiswa Baru USTI",To Do,White Box,"Source code mahasiswa_baru_usti_lingga.php dapat diakses","1. Telusuri baris kode percabangan ctype_digit($s)
+2. Input nama '08123456789'
+3. Periksa hasil ctype_alpha() (false) lalu ctype_digit() (true)","ctype_alpha() bernilai false, lanjut ke ctype_digit() yang bernilai true, sehingga $tipe = 'Number'",Lingga Prestiawan
+Test,"TC08 - White Box: Jalur Kondisi Nama Kosong","Pengujian jalur logika if ($nama === '') untuk memverifikasi percabangan gagal/validasi berjalan sesuai source code.",Medium,"whitebox,unit,sqa","Mahasiswa Baru USTI",To Do,White Box,"Source code mahasiswa_baru_usti_lingga.php dapat diakses","1. Telusuri baris kode: if ($nama === '')
+2. Kirim form tanpa POST['nama'] / string kosong
+3. Periksa nilai $status dan $pesan yang dihasilkan","Kondisi if ($nama === '') bernilai true, $status diset 'gagal' dan $pesan diset 'Field nama tidak boleh kosong.'",Lingga Prestiawan

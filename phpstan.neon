@@ -1,0 +1,30 @@
+parameters:
+    # Level 5 mencakup: pengecekan tipe argumen method/function,
+    # tipe return, property yang tidak terdefinisi, dan lebih banyak
+    # deteksi potensi bug dibanding level rendah (0-4).
+    level: 5
+
+    paths:
+        - mahasiswa_baru_usti_lingga.php
+        - tests
+
+    excludePaths:
+        - vendor/*
+        - node_modules/*
+
+    # File ini PHP tercampur HTML (template), bukan murni class/OOP,
+    # sehingga beberapa pengecekan strict bawaan PHPStan perlu
+    # disesuaikan supaya hasil scan relevan dengan kondisi nyata.
+    treatPhpDocTypesAsCertain: false
+
+    # Abaikan superglobal seperti $_POST/$_SERVER yang secara alami
+    # bertipe "mixed" - ini wajar untuk aplikasi PHP prosedural sederhana.
+    ignoreErrors:
+        - '#Variable \$_POST might not be defined#'
+        - '#Variable \$_SERVER might not be defined#'
+
+    # Tampilkan progress bar saat analisis berjalan
+    parallel:
+        processTimeout: 300.0
+
+    reportUnmatchedIgnoredErrors: false
