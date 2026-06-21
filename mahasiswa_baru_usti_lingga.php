@@ -24,8 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 🔥 OUTPUT KHUSUS UNTUK BLACKBOX TEST (CI/CD)
     // Jika request dari CI, langsung return hasil tanpa HTML
     if (isset($_GET['test']) && $_GET['test'] == '1') {
-      echo $debug_status;
-      exit;
+        echo $debug_status;
+        exit;
     }
 }
 ?>
