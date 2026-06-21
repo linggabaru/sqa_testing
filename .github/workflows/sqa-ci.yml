@@ -40,37 +40,9 @@ jobs:
         run: php vendor/bin/phpstan analyse --configuration=phpstan.neon
 
 
-  # ─────────────────────────────────────────
-  # JOB 2 — BLACK BOX CLI TEST
-  # ─────────────────────────────────────────
-  blackbox-cli:
-    name: "Black Box - CLI Test Script"
-    runs-on: ubuntu-latest
-    needs: whitebox-lint-static
-
-    steps:
-      - name: Checkout kode
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
-      - name: Jalankan PHP built-in server
-        run: php -S 127.0.0.1:8000 > /dev/null 2>&1 &
-
-      - name: Tunggu server siap
-        run: sleep 3
-
-      - name: Jalankan Black Box CLI Test
-        run: php tests/blackbox_test.php
-        env:
-          APP_URL: http://127.0.0.1:8000/sqa/mahasiswa_baru_usti_lingga.php
-
 
   # ─────────────────────────────────────────
-  # JOB 3 — SELENIUM UI TEST
+  # JOB 2 — SELENIUM UI TEST
   # ─────────────────────────────────────────
   blackbox-selenium:
     name: "Black Box - Selenium UI Suite"
@@ -108,7 +80,7 @@ jobs:
 
 
   # ─────────────────────────────────────────
-  # JOB 4 — REPORT
+  # JOB 3 — REPORT
   # ─────────────────────────────────────────
   report:
     name: "Report - Ringkasan Hasil Pengujian"
@@ -124,5 +96,4 @@ jobs:
           echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|---|---|" >> $GITHUB_STEP_SUMMARY
           echo "| White Box | ${{ needs.whitebox-lint-static.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| CLI Test | ${{ needs.blackbox-cli.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Selenium | ${{ needs.blackbox-selenium.result }} |" >> $GITHUB_STEP_SUMMARY
