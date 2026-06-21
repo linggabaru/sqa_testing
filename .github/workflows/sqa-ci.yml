@@ -108,7 +108,7 @@ jobs:
   report:
     name: "Report - Ringkasan Hasil Pengujian"
     runs-on: ubuntu-latest
-    needs: [whitebox-lint-static, whitebox-sonarqube, blackbox-cli, blackbox-selenium]
+    needs: [whitebox-lint-static, blackbox-cli, blackbox-selenium]
     if: always()
     steps:
       - name: Cetak ringkasan hasil pipeline
